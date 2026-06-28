@@ -104,7 +104,7 @@ public class ResourcePressureProperties {
     }
 
     public void setUtilization(List<Utilization> utilization) {
-        this.utilization = utilization == null ? new ArrayList<>() : utilization;
+        this.utilization = utilization == null ? new ArrayList<>() : new ArrayList<>(utilization);
         this.utilization.sort(Comparator.comparingInt(Utilization::getConcurrency));
     }
 
