@@ -1,0 +1,35 @@
+package io.github.liulzz.resourcepressure;
+
+import org.springframework.boot.autoconfigure.AutoConfiguration;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.bind.annotation.RestController;
+
+@AutoConfiguration
+@EnableConfigurationProperties(ResourcePressureProperties.class)
+@ConditionalOnProperty(prefix = "resource-pressure", name = "enabled", havingValue = "true", matchIfMissing = true)
+public class ResourcePressureAutoConfiguration {
+
+    @Bean
+    @ConditionalOnMissingBean
+    public CpuUsageMeter cpuUsageMeter() {
+        return new ThreadMxBeanCpuUsageMeter();
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public ResourcePressureService resourcePressureService(ResourcePressureProperties properties, CpuUsageMeter cpuUsageMeter) {
+        return new ResourcePressureService(properties, cpuUsageMeter);
+    }
+
+    @Bean
+    @ConditionalOnClass(RestController.class)
+    @ConditionalOnMissingBean
+    @ConditionalOnProperty(prefix = "resource-pressure", name = "endpoint-enabled", havingValue = "true", matchIfMissing = true)
+    public ResourcePressureController resourcePressureController(ResourcePressureService resourcePressureService) {
+        return new ResourcePressureController(resourcePressureService);
+    }
+}

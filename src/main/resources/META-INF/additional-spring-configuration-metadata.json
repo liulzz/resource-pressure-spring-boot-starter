@@ -1,0 +1,15 @@
+{
+  "groups": [
+    {"name": "resource-pressure", "type": "io.github.liulzz.resourcepressure.ResourcePressureProperties", "sourceType": "io.github.liulzz.resourcepressure.ResourcePressureProperties"}
+  ],
+  "properties": [
+    {"name": "resource-pressure.enabled", "type": "java.lang.Boolean", "description": "Enable resource pressure auto-configuration."},
+    {"name": "resource-pressure.endpoint-enabled", "type": "java.lang.Boolean", "description": "Expose REST endpoints when Spring MVC is available."},
+    {"name": "resource-pressure.endpoint-base-path", "type": "java.lang.String", "description": "Base path for the REST API."},
+    {"name": "resource-pressure.fluctuation-range", "type": "java.lang.String", "description": "Allowed fluctuation range such as 10% or ±10%."},
+    {"name": "resource-pressure.statistics-window", "type": "java.time.Duration", "description": "CPU feedback and statistics window."},
+    {"name": "resource-pressure.max-heap-allocation-ratio", "type": "java.lang.Double", "description": "Maximum ratio of JVM heap this starter may retain."},
+    {"name": "resource-pressure.memory-chunk-bytes", "type": "java.lang.Integer", "description": "Memory pressure allocation chunk size in bytes."},
+    {"name": "resource-pressure.utilization", "type": "java.util.List<io.github.liulzz.resourcepressure.ResourcePressureProperties$Utilization>", "description": "Target CPU and memory usage profiles by concurrency."}
+  ]
+}
