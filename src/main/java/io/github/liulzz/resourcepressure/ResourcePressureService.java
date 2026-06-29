@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.springframework.beans.factory.DisposableBean;
 
-public class ResourcePressureService implements DisposableBean {
+public class ResourcePressureService implements ResourcePressureOperations, DisposableBean {
     private final ResourcePressureProperties properties;
     private final ResourcePressureTargetSelector targetSelector;
     private final CpuPressureController cpuPressureController;
@@ -37,6 +37,12 @@ public class ResourcePressureService implements DisposableBean {
         });
     }
 
+    @Override
+    public ResourcePressureStatus start(int concurrency) {
+        return start(concurrency, null);
+    }
+
+    @Override
     public synchronized ResourcePressureStatus start(int concurrency, Duration duration) {
         if (concurrency < 1) {
             throw new IllegalArgumentException("concurrency must be greater than or equal to 1");
@@ -51,6 +57,7 @@ public class ResourcePressureService implements DisposableBean {
         return status();
     }
 
+    @Override
     public synchronized ResourcePressureStatus stop() {
         running.set(false);
         cancel(loopFuture);
@@ -60,6 +67,7 @@ public class ResourcePressureService implements DisposableBean {
         return status();
     }
 
+    @Override
     public synchronized ResourcePressureStatus status() {
         return new ResourcePressureStatus(
                 running.get(),

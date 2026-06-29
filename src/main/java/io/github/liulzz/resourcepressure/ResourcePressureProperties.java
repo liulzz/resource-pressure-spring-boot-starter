@@ -18,12 +18,6 @@ public class ResourcePressureProperties {
     /** Enable auto configuration. */
     private boolean enabled = true;
 
-    /** Expose REST endpoint when Spring MVC is on the classpath. */
-    private boolean endpointEnabled = true;
-
-    /** Base path for REST API. */
-    private String endpointBasePath = "/resource-pressure";
-
     /** Allowed target fluctuation, e.g. 10% means ±10%. */
     private String fluctuationRange = "10%";
 
@@ -49,22 +43,6 @@ public class ResourcePressureProperties {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
-    }
-
-    public boolean isEndpointEnabled() {
-        return endpointEnabled;
-    }
-
-    public void setEndpointEnabled(boolean endpointEnabled) {
-        this.endpointEnabled = endpointEnabled;
-    }
-
-    public String getEndpointBasePath() {
-        return endpointBasePath;
-    }
-
-    public void setEndpointBasePath(String endpointBasePath) {
-        this.endpointBasePath = endpointBasePath;
     }
 
     public String getFluctuationRange() {

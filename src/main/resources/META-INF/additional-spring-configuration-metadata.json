@@ -4,8 +4,6 @@
   ],
   "properties": [
     {"name": "resource-pressure.enabled", "type": "java.lang.Boolean", "description": "Enable resource pressure auto-configuration."},
-    {"name": "resource-pressure.endpoint-enabled", "type": "java.lang.Boolean", "description": "Expose REST endpoints when Spring MVC is available."},
-    {"name": "resource-pressure.endpoint-base-path", "type": "java.lang.String", "description": "Base path for the REST API."},
     {"name": "resource-pressure.fluctuation-range", "type": "java.lang.String", "description": "Allowed fluctuation range such as 10% or ±10%."},
     {"name": "resource-pressure.statistics-window", "type": "java.time.Duration", "description": "CPU feedback and statistics window."},
     {"name": "resource-pressure.max-heap-allocation-ratio", "type": "java.lang.Double", "description": "Maximum ratio of JVM heap this starter may retain."},
